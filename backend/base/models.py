@@ -5,12 +5,14 @@ from django.utils import timezone
 
 class Pin(models.Model):
     class School_Choices(models.TextChoices):
-        SCHOOL_OF_SCIENCE_AND_COMPUTER_STUDIES = 'SCHOOL_OF_SCIENCE_AND_COMPUTER_STUDIES'
-        SCHOOL_OF_BUSINESS = 'SCHOOL_OF_BUSINESS'
-        SCHOOL_OF_ENGINEERING = 'SCHOOL_OF_ENGINEERING'
+        SCHOOL_OF_SCIENCE_AND_COMPUTER_STUDIES = 'SCHOOL OF SCIENCE AND COMPUTER STUDIES - SSCSS'
+        SCHOOL_OF_BUSINESS_STUDIES = 'SCHOOL OF BUSINESS STUDIES - SBS'
+        SCHOOL_OF_ENGINEERING = 'SCHOOL OF ENGINEERING - SOET'
+        SCHOOL_OF_AGRICULTURE_AND_AGRICULTURAL_TECHNOLOGY  ='SCHOOL OF AGRICULTURE AND AGRICULTURAL TECHNOLOGY - SAAT'
+        SCHOOL_OF_ENVIRONMENTAL_STUDIES = 'SCHOOL OF ENVIRONMENTAL STUDIES - SOES'
 
-    school = models.CharField(choices=School_Choices.choices,max_length=40,blank=False,null=False)
-    department = models.CharField(max_length=50,blank=False,null=False)
+    school = models.CharField(choices=School_Choices.choices,max_length=150,blank=False,null=False)
+    department = models.CharField(max_length=100,blank=False,null=False)
     student_matric_number = models.CharField(max_length=20,blank=False,null=False)
     pin = models.CharField(max_length=10,default='',unique=True)
     date = models.DateTimeField(blank=True,auto_now=True)
@@ -29,7 +31,7 @@ class Pin(models.Model):
         super().save(*args, **kwargs)
 
     def __str__(self):
-        return f'{self.student_matric_number} - {self.department}'
+        return f'{self.student_matric_number} - {self.department} {self.pin}'
 
     def is_expired(self):
         return timezone.now() > self.expiry_date

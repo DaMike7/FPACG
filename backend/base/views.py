@@ -26,11 +26,12 @@ def return_pin(request,matric_number):
 @av(["GET"])
 def verify_pin(request,pin):
     try:
-        verify_pin = Pin.objects.get(pin=pin)
-    except pin.DoesNotExist:
+        verify = Pin.objects.get(pin=pin)
+    except:
         return Response({"error":'Pin doesn\'t exist!'},status=404)
 
-    if verify_pin.is_expired():
-        return Response({"Invalid!":"expired pin"},status=400)
     else:
-        return Response("Valid!",status=200)
+        if verify.is_expired():
+            return Response({"Invalid!":"Pin has expired!"},status=400)
+        else:
+            return Response("Valid!",status=200)
