@@ -13,7 +13,7 @@ export default function Pin () {
     const all_schools = [
         {'name':'SCHOOL OF SCIENCE AND COMPUTER STUDIES','sCode':'SSCSS'},
         {'name':'SCHOOL OF ENGINEERING TECHNOLOGY','sCode':'SOE'},
-        {'name':'SCHOOL OF BUSINESS','sCode':'SBS'},
+        {'name':'SCHOOL OF BUSINESS STUDIES','sCode':'SBS'},
         {'name':'SCHOOL OF ENVIRONMENTAL STUDIES','sCode':'SOES'},
         {'name':'SCHOOL OF AGRICULTURE AND AGRICULTURAL TECHNOLOGY','sCode':'SAAT'},
     ]
@@ -25,11 +25,34 @@ export default function Pin () {
         {'name':'Glass and Ceramic Technology','dCode':"SSCSS"},
         {'name':'Mathematics and Statistics','dCode':"SSCSS"},
         {'name':'Science Laboratory Technology','dCode':"SSCSS"},
-    ]
+        {'name':'Department of Agricultural Technology','dCode':'SAAT'},
+        {'name':'Department of Fisheries','dCode':'SAAT'},
+        {'name':'Department of Horticultural Technology','dCode':'SAAT'},
+        {'name':'Department of Accountancy','dCode':'SBS'},
+        {'name':'Department of Banking & Finance','dCode':'SBS'},
+        {'name':'Department of Business Administration & Management','dCode':'SBS'},
+        {'name':'Department of General Studies','dCode':'SBS'},
+        {'name':'Department of Marketing','dCode':'SBS'},
+        {'name':'Department of Mass Communication','dCode':'SBS'},
+        {'name':'Department of Office Technology Management','dCode':'SBS'},
+        {'name':'Department of Purchasing and Supply','dCode':'SBS'},
+        {'name':'Department of Taxation','dCode':'SBS'},
+        {'name':'Department of Agricultural and Bio-environmental Engineering Technology','dCode':'SOE'},
+        {'name':'Department of Civil Engineering Technology','dCode':'SOE'},
+        {'name':'Department of Electrical/Electronic Engineering Technology','dCode':'SOE'},
+        {'name':'Department of Mechanical Engineering Technology','dCode':'SOE'},
+        {'name':'Department of Mineral and Petroleum Resources Engineering Technology','dCode':'SOE'},
+        {'name':'Department of Architectural Technology','dCode':'SOES'},
+        {'name':'Department of Building Technology','dCode':'SOES'},
+        {'name':'Department of Estate Management & Valuation','dCode':'SOES'},
+        {'name':'Department of Quantity Surveying','dCode':'SOES'},
+        {'name':'Department of Surveying and Geo-Informatics','dCode':'SOES'},
+        {'name':'Department of Urban & Regional Planning','dCode':'SOES'},
+]
 
     const handleSChoolChange = (value,setschool) => {
         setSchool(setschool);
-        let getDpts = all_schools.filter(schl => schl.sCode === value);
+        let getDpts = all_departments.filter(schl => schl.dCode === value);
         setDpts(getDpts);
     };
   
@@ -85,11 +108,11 @@ export default function Pin () {
                         <div className="space-y-4" >
                             <div>
                                 <label  className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">School</label>
-                                <select type="text" onChange= handleSChoolChange{(e.target.value , e.target.selectedOptions[0].getAttribute('data-school-name'))} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
+                                <select type="text" onChange={(e) => handleSChoolChange(e.target.value , e.target.selectedOptions[0].getAttribute('data-school-name'))} className="bg-gray-50 border border-gray-300 text-gray-900 sm:text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500" required>
                                 <option value=""></option>
                                     {all_schools.map(sc => (
                                     <option value={[sc.sCode]} data-school-name={sc.name}>{sc.name}</option>
-                                    ))} 
+                                    ))}
                                 </select> 
                             </div>
                             <div>
